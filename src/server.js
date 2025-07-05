@@ -34,10 +34,9 @@ app.use(express.json()); // this middleware will parse JSON bodies: req.body
 app.use("/api/notes", notesRoutes);
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../../frontend/dist")));
-  app.get("*", (req, res) =>
-    res.sendFile(path.resolve(__dirname, "../../frontend", "dist", "index.html"))
-);
+  app.get("/", (req, res) => {
+    res.send("API is running...");
+  });
 
 }
 
